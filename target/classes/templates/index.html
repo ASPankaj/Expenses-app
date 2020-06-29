@@ -26,6 +26,7 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
+					<li><a th:href="@{/}">Home</a></li>
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 					<li><a th:href="@{/expenses/getAll}">My Expenses</a></li>					
 				</ul>
@@ -35,15 +36,20 @@
 
 	<br>
 	<br>
+	
 	<div class="container">
-		<h2>Welcome to expense calculation service</h2>
-
-		<p>
+		<h2>Welcome User</h2>
+			<p>
 			Welcome <span sec:authentication="principal.username">User</span>
 		</p>
-		<a href="#" th:href="@{/expenses/getAll}">My Dashboard</a>
-		<a href="#" th:href="@{/expenses/calculate}">Calculate My Expense</a>
+		<div class="container">
+			<p><a href="#" th:href="@{/expenses/getAll}">My Dashboard</a><p>
+		</div>
+		<div class="container">
+			<a href="#" th:href="@{/expenses/calculate}">Calculate My Expense</a>
+		</div>
 	</div>
+	
 
 	<script type="text/javascript"
 		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
