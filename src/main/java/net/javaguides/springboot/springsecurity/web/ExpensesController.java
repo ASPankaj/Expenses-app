@@ -53,6 +53,12 @@ public class ExpensesController {
 		expenseService.delete(id);
 		return "redirect:/expenses/getAll";
 	}
+	
+	@RequestMapping("/calculate")
+	public String customCalc(String from, String to) {
+		
+		return "calculate";
+	}
 }
 
 

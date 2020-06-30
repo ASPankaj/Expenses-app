@@ -2,17 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<link href="/webjars/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet" />
+	<link href="/webjars/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet" />
 	<script type="text/javascript" src="/webjars/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script> 
 	<meta charset="ISO-8859-1"> 
-<link rel="stylesheet" type="text/css"
-	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
-
 
 <title>Expense Dashboard</title>
 </head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+<link rel="text/javascript" src="../static/main.js" th:src="@{/main.js}"></link> 
+	<meta charset="ISO-8859-1"> 	
+	
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
@@ -27,9 +34,9 @@
 				<a class="navbar-brand" href="#" th:href="@{/}">Expense Management Application</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-					<li><a th:href="@{/expenses/getAll}">My Expenses</a></li>					
+				<ul class="nav navbar-nav">				
+					<li><a th:href="@{/expenses/getAll}">My Expenses</a></li>		
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>			
 				</ul>
 			</div>
 		</div>
@@ -58,7 +65,7 @@
 				<td th:text="${expense.name}">Name</td>
 				<td th:text="${expense.price}">Price</td>
 				<td th:text="${expense.date}">Date</td> 				
-				<td><a th:href="@{/expenses/getOne/(id=${expense.id})}" class="btn btn-warning" >Edit</a></td>		
+				<td><a th:href="@{/expenses/getOne/(id=${expense.id})}" class="btn btn-warning" id="editButton" data-target="#editModal" >Edit</a></td>		
 				<td><a th:href="@{/expenses/delete/(id=${expense.id})}" class="btn btn-danger" id="deleteButton">Delete</a></td>
 			</tr>  
 		</table> 
@@ -69,7 +76,7 @@
    <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">New Expense</h3>
+        <h2 class="modal-title" id="exampleModalLabel">New Expense</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -170,8 +177,8 @@
 		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
 	<script type="text/javascript"
 		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-	<script type="text/javascript" 
-		th:src="@{/js/main.js}" src="../static/js/main.js"></script> 
+		<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script> 
+
 		
 	
 		

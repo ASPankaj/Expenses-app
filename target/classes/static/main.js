@@ -5,7 +5,7 @@
 
 
 $('document').ready(function(){	
-	$('.table .btn').on('click',function(event){	
+	$('.table #editButton').on('click',function(event){	
 		
 		event.preventDefault();  		
 		var href = $(this).attr('href');
@@ -15,7 +15,9 @@ $('document').ready(function(){
 			 $('#nameEdit').val(expense.name);
 			 $('#priceEdit').val(expense.price);
 			 $('#dateEdit').val(expense.date); 			
-		});
+		});	
+		
+		
 		
 		console.log("im here coming in this");
 		$('#editModal').modal();				
@@ -25,7 +27,7 @@ $('document').ready(function(){
 		
 		event.preventDefault(); 
 		var href = $(this).attr('href');
-		$('#deleteModal #delRef').attr('class', class);
+		$('#deleteModal #delRef').attr('href', href);
 		$('#deleteModal').modal();
 		
 	});
