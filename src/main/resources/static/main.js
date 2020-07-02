@@ -31,4 +31,15 @@ $('document').ready(function(){
 		$('#deleteModal').modal();
 		
 	});
+	
+	
+	$('#dropdownMenuLink').on('click',function(event){		
+		
+		event.preventDefault(); 
+		
+		$('#dropdownLink').modal();
+		
+	});
+	
+	
 });

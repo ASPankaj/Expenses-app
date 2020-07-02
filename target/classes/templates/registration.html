@@ -21,7 +21,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Expense Management Application</a>
+				<a class="navbar-brand" href="#" th:href="@{/}">Expense Management</a>
 			</div>
 		</div>
 	</nav>
@@ -99,8 +99,7 @@
 					<div class="form-group"
 						th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">
 						<input id="terms" type="checkbox" th:field="*{terms}" />   <label
-							class="control-label" for="terms"> I agree with the <a
-							href="#">terms and conditions</a> for Registration.
+							class="control-label" for="terms"> I agree with the terms and conditions for Registration.
 						</label>
 						<p class="error-message"
 							th:each="error : ${#fields.errors('terms')}" th:text="${error}">Validation

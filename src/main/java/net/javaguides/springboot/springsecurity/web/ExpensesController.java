@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.javaguides.springboot.springsecurity.model.Expense;
@@ -54,21 +55,42 @@ public class ExpensesController {
 		return "redirect:/expenses/getAll";
 	}
 	
-	@RequestMapping("/calculate")
-	public String customCalc(String from, String to) {
-		
+	@GetMapping(value="/calculate/first")
+	public String dateQuery(@RequestParam String date1,@RequestParam String date2,Model model) {
+		 List<Expense> bydate = expenseService.bydates(date1,date2);
+		 float totalExpense = 0 ;
+		 for (Expense expense : bydate) {
+			  totalExpense += Float.parseFloat(expense.getPrice());
+			 System.out.println("totalExpense is ======> "+totalExpense );
+		}
+			model.addAttribute("total", totalExpense);
+			model.addAttribute("expenses", expenseService.bydates(date1,date2));
 		return "calculate";
 	}
-}
+	
+	
+	@GetMapping(value="/calculate")	
+	public String customCalcRename(Model model) {
+		 String date="2020-07-07";  
+		 
+		 List<Expense> bydate = expenseService.bydate(date);
+		 float totalExpense = 0 ;
+		 for (Expense expense : bydate) {
+			  totalExpense += Float.parseFloat(expense.getPrice());
+			 System.out.println("totalExpense is ======> "+totalExpense );	}
+		 
+		 
+		model.addAttribute("total", totalExpense);
+		model.addAttribute("expenses", expenseService.bydate(date));
+		
+		 return "calculate";
+	}
+	
+	
+	
 
-
-
-
-
-
-
-
-
-
-
+	
+	
+	
+} 
 

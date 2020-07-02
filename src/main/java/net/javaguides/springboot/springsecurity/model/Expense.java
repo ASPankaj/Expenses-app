@@ -2,10 +2,12 @@ package net.javaguides.springboot.springsecurity.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
+@NamedQuery(name="Expense.findByDates",query="SELECT e from Expense e where e.date between ?1 and ?2")
 public class Expense {
 	
 	@Id

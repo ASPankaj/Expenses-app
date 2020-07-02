@@ -34,4 +34,15 @@ public class ExpenseService {
 	public void delete(Integer id) {
 		expenseRepository.deleteById(id);
 	}
+	
+	public List<Expense> bydate(String date) {
+		return expenseRepository.findByDate(date);
+	}
+
+	public List<Expense> bydates(String date1, String date2) {
+		// TODO Auto-generated method stub
+		return expenseRepository.findByDates(date1,date2);
+	}
+	
+
 }

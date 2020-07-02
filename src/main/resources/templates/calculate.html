@@ -13,6 +13,8 @@
 
 <title>Calculate Expense</title>
 </head>
+
+<link rel="text/javascript" src="../static/main.js" th:src="@{/main.js}"></link> 
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
@@ -24,13 +26,12 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Expense Management Application</a>
+				<a class="navbar-brand" href="#" th:href="@{/}">Expense Management</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li><a th:href="@{/expenses/getAll}">My Expenses</a></li>	
-					<li><a th:href="@{/expenses/calculate}">Calculate My Expense</a></li>	
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>			
+				<ul class="nav navbar-nav">				
+					<li class="nav-item active"><a th:href="@{/expenses/getAll}">My Expenses</a></li>
+					<li class="nav-item active" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>			
 				</ul>
 			</div>
 		</div>
@@ -40,30 +41,75 @@
 	<br>
 <main role="main" class="container">
 	<div class="starter-template">
-			<div class="container">
-			<div class="navbar-header">
-			<br/><br/><br/>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<label>Start Date</label>
-				<input type="text" placehoder="Start Date" id="startdate"/>
-				<label>End Date</label>
-				<input type="text" placehoder="End Date" id="enddate"/>				
-				</ul>
-			</div>
+	<!--  <div th:if="${not #lists.isEmpty(expenses)}"> -->
+		<h2>My Expense List</h2>	
+		<br/><br/>	
+		
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dateModal">Calculate Expense</button>
+		
+		<table class="table table-stripped"  border="1">
+			<thead>
+			<tr>
+				<td>Id</td>
+				<td>Name</td>
+				<td>Price</td>
+				<td>Date</td>
 			
-				
-			</div>	
-						
-	</div>
+			</tr>
+			</thead>
+				<tr th:each="expense:${expenses}">
+				<td th:text="${expense.id}">Id</td>				
+				<td th:text="${expense.name}">Name</td>
+				<td th:text="${expense.price}">Price</td>
+				<td th:text="${expense.date}">Date</td> 				
+				</tr>  
+		</table> 
+	
+		<h3><span style="color:blue">Total expenses are:</span></h3>
+		<h5 th:text="${total}"></h5>
+	
+	
+<div class="modal fade" id="dateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form th:action="@{/expenses/calculate/first}" method="get">
+   <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Provide the date range</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Date From</label>
+            <input type="text" class="form-control" id="recipient-name" name="date1">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Date To</label>
+            <input type="text" class="form-control" id="recipient-name" name="date2">
+          </div>
+           
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </div> 
+  </div>
+ </form>
+</div>
 
+
+		<!-- </div> -->
 </div>
 </main>
+	
 
 	<script type="text/javascript"
 		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
 	<script type="text/javascript"
 		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script> 
 
 	
 		
