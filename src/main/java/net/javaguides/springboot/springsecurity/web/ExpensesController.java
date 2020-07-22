@@ -36,6 +36,35 @@ public class ExpensesController {
 		return expenseService.getOne(id);
 	}
 	
+	
+	//tbadded http://localhost:8080/expenses/getName?name=Hosting
+	@GetMapping("/getName")
+	@ResponseBody
+	public List<Expense> getName(@RequestParam String name) {
+		return expenseService.byName(name);
+	}
+	
+	//tbadded http://localhost:8080/expenses/getDate?date=2020-06-21
+	@GetMapping(value="/getDate")	
+	@ResponseBody
+	public List<Expense> getDate(@RequestParam String date) {	  			
+		 return expenseService.bydate(date);
+	}
+	
+	//tbadded http://localhost:8080/expenses/
+		@GetMapping("/getCustomName")
+		@ResponseBody
+		public List<Expense> getCustomName(@RequestParam String name) {
+			return expenseService.byName(name);
+		}
+		
+	//tbadded http://localhost:8080/expenses/getNamePrice?price=1000&name=Hosting
+		@GetMapping("/getNamePrice")
+		@ResponseBody
+		public List<Expense> getNameAndPrice(@RequestParam String name, @RequestParam String price) {
+			return expenseService.byNameAndPrice(name, price);
+		}
+	
 	@PostMapping(value="/addNew")
 	public String addNew(Expense expense) {
 		expenseService.addNew(expense);
@@ -69,22 +98,21 @@ public class ExpensesController {
 	}
 	
 	
-	@GetMapping(value="/calculate")	
-	public String customCalcRename(Model model) {
-		 String date="2020-07-07";  
-		 
-		 List<Expense> bydate = expenseService.bydate(date);
-		 float totalExpense = 0 ;
-		 for (Expense expense : bydate) {
-			  totalExpense += Float.parseFloat(expense.getPrice());
-			 System.out.println("totalExpense is ======> "+totalExpense );	}
-		 
-		 
-		model.addAttribute("total", totalExpense);
-		model.addAttribute("expenses", expenseService.bydate(date));
-		
-		 return "calculate";
-	}
+	/*
+	 * @GetMapping(value="/calculate") public String customCalcRename(Model model) {
+	 * String date="2020-07-07";
+	 * 
+	 * List<Expense> bydate = expenseService.bydate(date); float totalExpense = 0 ;
+	 * for (Expense expense : bydate) { totalExpense +=
+	 * Float.parseFloat(expense.getPrice());
+	 * System.out.println("totalExpense is ======> "+totalExpense ); }
+	 * 
+	 * 
+	 * model.addAttribute("total", totalExpense); model.addAttribute("expenses",
+	 * expenseService.bydate(date));
+	 * 
+	 * return "calculate"; }
+	 */
 	
 	
 	

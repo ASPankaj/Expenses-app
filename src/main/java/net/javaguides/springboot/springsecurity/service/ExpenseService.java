@@ -40,9 +40,13 @@ public class ExpenseService {
 	}
 
 	public List<Expense> bydates(String date1, String date2) {
-		// TODO Auto-generated method stub
 		return expenseRepository.findByDates(date1,date2);
 	}
-	
+	public List<Expense> byName(String name) {
+		return expenseRepository.findByName(name);
+	}
 
+	public List<Expense> byNameAndPrice(String name, String price) {
+		return expenseRepository.findByNameAndPrice(name,price);
+	}
 }
